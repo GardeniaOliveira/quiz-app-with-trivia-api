@@ -43,15 +43,17 @@ getData().then(result => {
 
 function selectedOption() {
     divOption.forEach((div) => {
-        let active = div.addEventListener('click', (e) => {
+        div.addEventListener('click', (e) => {
+            divOption.forEach((removeDiv) => {
+                removeDiv.classList.remove('active-answer');
+            })
+
             selected = e.target;
             console.log(selected.innerText);
             div.classList.add('active-answer');
 
         })
-        if (active) {
-            div.classList.remove('active-answer');
-        }
+
     })
 }
 
