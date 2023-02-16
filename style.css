@@ -72,6 +72,9 @@ footer {
 }
 
 /* questions page */
+.container {
+  width: 90vw;
+}
 h3 {
   margin-top: 30px;
 }
@@ -102,6 +105,8 @@ h3 {
   background-color: var(--orange--);
   color: white;
   cursor: pointer;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .btn-submit {
@@ -119,7 +124,8 @@ h3 {
 .btn-submit:hover {
   background-color: var(--orange--);
 }
-.shadow {
+.active-answer {
+  background-color: var(--orange--);
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   color: white;
