@@ -3,7 +3,7 @@ const counterEnd = document.querySelector('.counter-end');
 const numberQuestion = document.querySelector('.number-question');
 const question = document.querySelector('.question');
 const divOption = document.querySelectorAll('.div-option');
-const btnLetter = document.querySelector('.btn-letter');
+const btnLetter = document.querySelectorAll('.btn-letter');
 const answer = document.querySelectorAll('.answer');
 const btnSubmit = document.querySelector('.btn-submit');
 let counter = 1;
@@ -55,7 +55,24 @@ function selectedOption() {
 
     })
 }
+function showCorrectAnswer(data) {
+    let correctAnswer = data.results[arrayPosition].correct_answer;
+    divOption.forEach((div) => {
+        const divAnswer = div.querySelector('.answer')
+        const btnLetter = div.querySelector('.btn-letter')
+        console.log(divAnswer)
+        if (divAnswer.innerText === correctAnswer) {
+            div.classList.add('correct-answer');
+            btnLetter.classList.add('correct-answer');
 
+        }
+    })
+    // answer.forEach((p) => {
+    //     if (p.innerText === correctAnswer) {
+    //         p.classList.add('correct-answer');
+    //     }
+    // })
+}
 function nextQuestion() {
     arrayPosition = arrayPosition + 1;
     showData()
@@ -66,14 +83,22 @@ function nextQuestion() {
         divOption.forEach((removeDiv) => {
             removeDiv.classList.remove('active-answer');
         })
-        answer.forEach((p) => {
-            p.classList.remove('correct-answer');
+        // answer.forEach((p) => {
+        //     p.classList.remove('correct-answer');
+        // })
+
+        divOption.forEach((div) => {
+            div.classList.remove('correct-answer');
+        })
+        btnLetter.forEach((btn) => {
+            btn.classList.remove('correct-answer');
         })
 
     }
 }
 
 btnSubmit.addEventListener('click', () => {
+    debugger;
     showCorrectAnswer(data);
     setTimeout(() => {
         nextQuestion()
@@ -82,11 +107,4 @@ btnSubmit.addEventListener('click', () => {
 })
 
 
-function showCorrectAnswer(data) {
-    let correctAnswer = data.results[arrayPosition].correct_answer;
-    answer.forEach((p) => {
-        if (p.innerText === correctAnswer) {
-            p.classList.add('correct-answer');
-        }
-    })
-}
+
