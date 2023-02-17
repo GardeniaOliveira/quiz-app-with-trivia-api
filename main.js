@@ -8,13 +8,14 @@ const answer = document.querySelectorAll('.answer');
 const btnSubmit = document.querySelector('.btn-submit');
 let counter = 1;
 const apiUrl = 'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple';
-let selected;
 let arrayPosition = 0;
 let data;
+
 
 counterStart.innerText = 1;
 numberQuestion.innerText = '1 .';
 selectedOption()
+
 
 const getData = async () => {
     const apiUrl = 'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple';
@@ -29,6 +30,8 @@ const showData = () => {
     question.innerText = `${data.results[arrayPosition].question}`;
     // 3 dots are to put into array one at a time / created a new [] to put correct and incorrect answers and sort them; 
     const allAnswers = [...data.results[arrayPosition].incorrect_answers, data.results[arrayPosition].correct_answer].sort();
+    let correctAnswer = data.results[arrayPosition].correct_answer;
+    console.log(correctAnswer)
     for (let j = 0; j < allAnswers.length; j++) {
         answer[j].innerText = `${allAnswers[j]}`;
     }
@@ -47,11 +50,7 @@ function selectedOption() {
             divOption.forEach((removeDiv) => {
                 removeDiv.classList.remove('active-answer');
             })
-
-            selected = e.target;
-            console.log(selected.innerText);
             div.classList.add('active-answer');
-
         })
 
     })
@@ -64,9 +63,30 @@ function nextQuestion() {
         counter = counter + 1;
         counterStart.innerText = counter;
         numberQuestion.innerText = `${counter} .`;
+        divOption.forEach((removeDiv) => {
+            removeDiv.classList.remove('active-answer');
+        })
+        answer.forEach((p) => {
+            p.classList.remove('correct-answer');
+        })
+
     }
 }
 
 btnSubmit.addEventListener('click', () => {
-    nextQuestion()
+    showCorrectAnswer(data);
+    setTimeout(() => {
+        nextQuestion()
+    }, 800)
+
 })
+
+
+function showCorrectAnswer(data) {
+    let correctAnswer = data.results[arrayPosition].correct_answer;
+    answer.forEach((p) => {
+        if (p.innerText === correctAnswer) {
+            p.classList.add('correct-answer');
+        }
+    })
+}

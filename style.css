@@ -130,3 +130,6 @@ h3 {
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   color: white;
 }
+.correct-answer {
+  background-color: #34d399;
+}
