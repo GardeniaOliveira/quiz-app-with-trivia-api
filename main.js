@@ -13,6 +13,7 @@ let counter = 1;
 const apiUrl = 'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple';
 let arrayPosition = 0;
 let data;
+let scoreCounter = 0;
 
 
 counterStart.innerText = 1;
@@ -58,12 +59,12 @@ function selectedOption() {
 
     })
 }
+
 function showCorrectAnswer(data) {
     let correctAnswer = data.results[arrayPosition].correct_answer;
     divOption.forEach((div) => {
         const divAnswer = div.querySelector('.answer')
         const btnLetter = div.querySelector('.btn-letter')
-        console.log(divAnswer)
         if (divAnswer.innerText === correctAnswer) {
             div.classList.add('correct-answer');
             btnLetter.classList.add('correct-answer');
@@ -71,6 +72,7 @@ function showCorrectAnswer(data) {
         }
     })
 }
+
 function showModal() {
     modal.classList.remove('hidden-modal');
     btnRestart.addEventListener('click', (e) => {
@@ -98,8 +100,8 @@ function nextQuestion() {
 }
 
 btnSubmit.addEventListener('click', () => {
-    debugger;
     showCorrectAnswer(data);
+    updateScore();
     if (counter === 10) {
         showModal()
     }
@@ -111,3 +113,15 @@ btnSubmit.addEventListener('click', () => {
 
 
 
+function updateScore() {
+    const selected = document.querySelector('.active-answer .correct-answer');
+    if (selected) {
+        scoreCounter = scoreCounter + 1;
+        score.innerText = `${scoreCounter} / 10`
+    }
+
+    console.log(selected)
+
+
+
+}
