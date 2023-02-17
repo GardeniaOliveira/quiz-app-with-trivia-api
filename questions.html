@@ -14,29 +14,39 @@
     <main>
         <div class="container">
             <h1>Quiz App</h1>
-            <div>
-                <h3>Question <span class="counter-start"></span> / <span class="counter-end">10</span></h3>
-                <div class="question-container">
-                    <p class="number-question"></p>
-                    <p class="question"></p>
+            <div class="box-modal">
+                <div>
+                    <h3>Question <span class="counter-start"></span> / <span class="counter-end">10</span></h3>
+                    <div class="question-container">
+                        <p class="number-question"></p>
+                        <p class="question"></p>
+                    </div>
+                </div>
+                <div class="container-options">
+                    <div class="div-option"> <button class="btn-letter  shadow">A</button>
+                        <p class="answer"></p>
+                    </div>
+                    <div class="div-option"> <button class="btn-letter  shadow">B</button>
+                        <p class="answer"></p>
+                    </div>
+                    <div class="div-option"> <button class="btn-letter  shadow">C</button>
+                        <p class="answer"></p>
+                    </div>
+                    <div class="div-option"> <button class="btn-letter  shadow">D</button>
+                        <p class="answer"></p>
+                    </div>
+
+                </div>
+                <button class="btn-submit">Submit</button>
+
+                <div class="modal hidden-modal">
+                    <p>Your score:</p>
+                    <p class="score">8/10</p>
+                    <button class="btn-restart">Start again</button>
                 </div>
             </div>
-            <div class="container-options">
-                <div class="div-option"> <button class="btn-letter  shadow">A</button>
-                    <p class="answer"></p>
-                </div>
-                <div class="div-option"> <button class="btn-letter  shadow">B</button>
-                    <p class="answer"></p>
-                </div>
-                <div class="div-option"> <button class="btn-letter  shadow">C</button>
-                    <p class="answer"></p>
-                </div>
-                <div class="div-option"> <button class="btn-letter  shadow">D</button>
-                    <p class="answer"></p>
-                </div>
-            </div>
-            <button class="btn-submit">Submit</button>
         </div>
+
     </main>
     <footer>
         <p>Developer by Gardênia Oliveira</p>

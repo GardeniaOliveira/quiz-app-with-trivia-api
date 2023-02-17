@@ -6,6 +6,9 @@ const divOption = document.querySelectorAll('.div-option');
 const btnLetter = document.querySelectorAll('.btn-letter');
 const answer = document.querySelectorAll('.answer');
 const btnSubmit = document.querySelector('.btn-submit');
+const modal = document.querySelector('.modal');
+let score = document.querySelector('.score');
+const btnRestart = document.querySelector('.btn-restart');
 let counter = 1;
 const apiUrl = 'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple';
 let arrayPosition = 0;
@@ -67,11 +70,12 @@ function showCorrectAnswer(data) {
 
         }
     })
-    // answer.forEach((p) => {
-    //     if (p.innerText === correctAnswer) {
-    //         p.classList.add('correct-answer');
-    //     }
-    // })
+}
+function showModal() {
+    modal.classList.remove('hidden-modal');
+    btnRestart.addEventListener('click', (e) => {
+        window.location.reload();
+    })
 }
 function nextQuestion() {
     arrayPosition = arrayPosition + 1;
@@ -83,10 +87,6 @@ function nextQuestion() {
         divOption.forEach((removeDiv) => {
             removeDiv.classList.remove('active-answer');
         })
-        // answer.forEach((p) => {
-        //     p.classList.remove('correct-answer');
-        // })
-
         divOption.forEach((div) => {
             div.classList.remove('correct-answer');
         })
@@ -100,6 +100,9 @@ function nextQuestion() {
 btnSubmit.addEventListener('click', () => {
     debugger;
     showCorrectAnswer(data);
+    if (counter === 10) {
+        showModal()
+    }
     setTimeout(() => {
         nextQuestion()
     }, 800)
