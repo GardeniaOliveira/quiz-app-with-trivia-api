@@ -26,7 +26,6 @@ const getData = async () => {
     const apiReturn = await fetch(apiUrl);
     //change the data to json
     const data = await apiReturn.json();
-    console.log(data);
     return data;
 
 };
@@ -35,7 +34,6 @@ const showData = () => {
     // 3 dots are to put into array one at a time / created a new [] to put correct and incorrect answers and sort them; 
     const allAnswers = [...data.results[arrayPosition].incorrect_answers, data.results[arrayPosition].correct_answer].sort();
     let correctAnswer = data.results[arrayPosition].correct_answer;
-    console.log(correctAnswer)
     for (let j = 0; j < allAnswers.length; j++) {
         answer[j].innerText = `${allAnswers[j]}`;
     }
@@ -51,10 +49,13 @@ getData().then(result => {
 function selectedOption() {
     divOption.forEach((div) => {
         div.addEventListener('click', (e) => {
+
             divOption.forEach((removeDiv) => {
                 removeDiv.classList.remove('active-answer');
+
             })
             div.classList.add('active-answer');
+            btnSubmit.disabled = false;
         })
 
     })
@@ -86,6 +87,7 @@ function nextQuestion() {
         counter = counter + 1;
         counterStart.innerText = counter;
         numberQuestion.innerText = `${counter} .`;
+        btnSubmit.disabled = true;
         divOption.forEach((removeDiv) => {
             removeDiv.classList.remove('active-answer');
         })
@@ -98,8 +100,16 @@ function nextQuestion() {
 
     }
 }
+function updateScore() {
+    const selected = document.querySelector('.active-answer .correct-answer');
+    if (selected) {
+        scoreCounter = scoreCounter + 1;
+        score.innerText = `${scoreCounter} / 10`
+    }
+}
 
 btnSubmit.addEventListener('click', () => {
+
     showCorrectAnswer(data);
     updateScore();
     if (counter === 10) {
@@ -113,15 +123,3 @@ btnSubmit.addEventListener('click', () => {
 
 
 
-function updateScore() {
-    const selected = document.querySelector('.active-answer .correct-answer');
-    if (selected) {
-        scoreCounter = scoreCounter + 1;
-        score.innerText = `${scoreCounter} / 10`
-    }
-
-    console.log(selected)
-
-
-
-}
